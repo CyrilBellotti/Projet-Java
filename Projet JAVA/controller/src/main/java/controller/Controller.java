@@ -12,7 +12,7 @@ import contract.IView;
 public class Controller implements IController {
 
 	/** The view. */
-	private IView		view;
+	private IView view;
 
 	/** The model. */
 	private IModel	model;
@@ -36,7 +36,8 @@ public class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		//this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		load();
 	}
 
 	/**
@@ -82,6 +83,10 @@ public class Controller implements IController {
 			default:
 				break;
 		}
+	}
+	public void load()
+	{
+		this.model.loadMap();
 	}
 
 }

@@ -106,5 +106,61 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 		}
 		return null;
 	}
-
+	
+	public void buildMap()
+	{
+		map aMap = new map();
+		try
+		{
+			final String sql0 = "{call truncate()}";
+			final CallableStatement call0 = getConnection().prepareCall(sql0);
+			call0.execute();
+			for (int y = 0; y<12; y++)
+			{
+				for (int x = 0; x<20; x++)
+				{
+					final String sql = "{call build_map(?, ?, ?, ?)}";
+					final CallableStatement call = getConnection().prepareCall(sql);
+					call.setInt(1, aMap.getNiveau());
+					call.setInt(2, y);
+					call.setInt(3, x);
+					call.setString(4,Character.toString(aMap.getMap(y, x)));
+					call.execute();
+				}
+			}
+		}
+		catch (final Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public int[][] translateMap()
+	{
+		int [][] map = new int [12][20];
+		try
+		{
+			for (int y = 0; y<12; y++)
+			{
+				for (int x = 0; x<20; x++)
+				{
+					final String sql = "{call get_map(?, ?)}";
+					final CallableStatement call = getConnection().prepareCall(sql);
+					call.setInt(1, y);
+					call.setInt(2, x);
+					call.execute();
+					ResultSet result = call.getResultSet();
+					if (result.first()) 
+					{
+						map[y][x] = result.getInt(1);
+					}
+				}
+			}
+		}
+		catch (final Exception e) 
+		{
+			e.printStackTrace();
+		}
+		return map;
+	}
 }

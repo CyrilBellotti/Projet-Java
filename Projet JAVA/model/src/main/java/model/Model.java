@@ -14,14 +14,14 @@ public class Model extends Observable implements IModel {
 
 	/** The message. */
 	private String message;
-
 	/**
 	 * Instantiates a new model.
 	 */
-	public Model() {
+	public Model()
+	{
 		this.message = "";
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 *
@@ -65,4 +65,19 @@ public class Model extends Observable implements IModel {
 	public Observable getObservable() {
 		return this;
 	}
+	
+	public int [][] loadMap()
+	{
+		int[][] map = new int [12][20];
+		try {
+			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
+			daoHelloWorld.buildMap();
+			map = daoHelloWorld.translateMap();
+		} catch (final SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
 }
