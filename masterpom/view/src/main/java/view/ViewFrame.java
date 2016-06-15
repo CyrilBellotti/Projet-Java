@@ -11,41 +11,17 @@ import javax.swing.JOptionPane;
 import contract.IController;
 import contract.IModel;
 
-/**
- * The Class ViewFrame.
- *
- * @author Jean-Aymeric Diet
- */
-class ViewFrame extends JFrame implements KeyListener {
 
-	/** The model. */
-	private IModel						model;
+public class ViewFrame extends JFrame implements KeyListener {
 
-	/** The controller. */
-	private IController				controller;
-	/** The Constant serialVersionUID. */
+	private IModel	model;
+	private IController	controller;
 	private static final long	serialVersionUID	= -697358409737458175L;
-
-	/**
-	 * Instantiates a new view frame.
-	 *
-	 * @param model
-	 *          the model
-	 * @throws HeadlessException
-	 *           the headless exception
-	 */
+	
 	public ViewFrame(final IModel model) throws HeadlessException {
 		this.buildViewFrame(model);
 	}
 
-	/**
-	 * Instantiates a new view frame.
-	 *
-	 * @param model
-	 *          the model
-	 * @param gc
-	 *          the gc
-	 */
 	public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
 		super(gc);
 		this.buildViewFrame(model);

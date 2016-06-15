@@ -14,6 +14,7 @@ public interface IModel {
 	 *
 	 * @return the message
 	 */
+	// test commit 
 	String getMessage();
 
 	/**
